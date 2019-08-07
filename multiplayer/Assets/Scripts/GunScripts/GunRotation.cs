@@ -1,31 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class GunRotation : MonoBehaviour
+public class GunRotation : NetworkBehaviour
 {
     private Transform gunTransform;
     // Start is called before the first frame update
-    void Start()
+    public override void OnStartAuthority()
     {
-        gunTransform = gameObject.transform;  
+        if(hasAuthority)
+            gunTransform = gameObject.transform;  
     }
 
     // Update is called once per frame
     void Update()
     {
-        float yRotation = Input.GetAxis("Mouse Y");
-        //Debug.Log(gunTransform.rotation.eulerAngles.x);
-        //Debug.Log(gunTransform.localRotation.eulerAngles.x + " local");
-        float currentXRotation = gunTransform.rotation.eulerAngles.x;
-        if (isInRange(0, 40, currentXRotation) || isInRange(320, 360, currentXRotation))
-            gunTransform.Rotate(yRotation, 0, 0);
-        else
+        if (hasAuthority)
         {
-            if (isInRange(40, 45, currentXRotation) && yRotation < 0)
+            float yRotation = Input.GetAxis("Mouse Y");
+
+            float currentXRotation = gunTransform.rotation.eulerAngles.x;
+            if (isInRange(0, 40, currentXRotation) || isInRange(320, 360, currentXRotation))
                 gunTransform.Rotate(yRotation, 0, 0);
-            if (isInRange(315,320, currentXRotation) && yRotation > 0)
-                gunTransform.Rotate(yRotation, 0, 0);
+            else
+            {
+                if (isInRange(40, 45, currentXRotation) && yRotation < 0)
+                    gunTransform.Rotate(yRotation, 0, 0);
+                if (isInRange(315, 320, currentXRotation) && yRotation > 0)
+                    gunTransform.Rotate(yRotation, 0, 0);
+            }
         }
 
     }
