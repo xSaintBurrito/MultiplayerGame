@@ -11,28 +11,19 @@ public class PlayerMovement : NetworkBehaviour
     Transform playerTransform = null;
     private bool isGrounded = true;
 
-
     // Start is called before the first frame update
-    void Start()
+    public override void OnStartAuthority()
     {
-
-
-
-        if (this.hasAuthority)
-        {
+        if(hasAuthority){
+            gameObject.transform.Find("Gun").gameObject.transform.Find("PlayerCamera").gameObject.SetActive(true);
+        }
             playerRigidbody = gameObject.GetComponent<Rigidbody>();
             playerTransform = gameObject.GetComponent<Transform>();
-           
-
-           
-        }
     }
     private void FixedUpdate()
     {
         if (this.hasAuthority && playerRigidbody!= null && playerTransform != null) 
         {
-
-
             if (Input.GetKey(KeyCode.Space) && isGrounded)
             {
                 playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -41,6 +32,7 @@ public class PlayerMovement : NetworkBehaviour
             float playerZMovement = -Input.GetAxis("Horizontal");
             float playerXMovement = -Input.GetAxis("Vertical");
             playerRigidbody.MovePosition(playerTransform.position + playerTransform.forward * playerXMovement * speed + playerTransform.right * playerZMovement * speed);
+
         }
     }
 

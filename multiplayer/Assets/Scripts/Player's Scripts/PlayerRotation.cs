@@ -8,11 +8,12 @@ public class PlayerRotation : NetworkBehaviour
 
     private Transform playerTransform = null;
     // Start is called before the first frame update
-    void Start()
+    public override void OnStartAuthority()
     {
         if (this.hasAuthority)
         {
             playerTransform = gameObject.transform;
+            Debug.Log("elo");
         }
     }
 
@@ -22,6 +23,7 @@ public class PlayerRotation : NetworkBehaviour
 
         if (this.hasAuthority && playerTransform !=null)
         {
+            Debug.Log("chuj");
             float xRotation = Input.GetAxis("Mouse X");
             float yRotation = Input.GetAxis("Mouse Y");
 
