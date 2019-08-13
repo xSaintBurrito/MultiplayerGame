@@ -5,32 +5,41 @@ using UnityEngine.Networking;
 
 public class PlayerShoot : NetworkBehaviour
 {
-    [SerializeField]
-    private iShootable gun;
+    private GameObject gun;
+    public GameObject bullet;
+    public Transform gunbulletspawn;
+    public float timeforshoot = 1f;
+    public float timer;
+   // PlayerConnection playerConnection;
     // Start is called before the first frame update
-    void Start()
+    public override void OnStartAuthority()
     {
-        gun = gameObject.GetComponentInChildren<iShootable>();
+            timer = Time.time;
+     //   playerConnection = gameObject.transform.parent.GetComponent<PlayerConnection>();
+    }
+
+    public void Start()
+    {
+
+        gun = gameObject.transform.Find("Gun").gameObject;
+        gunbulletspawn = gun.transform.Find("BulletSpawn").gameObject.transform;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (this.isLocalPlayer)
+        if (hasAuthority)
         {
-            if (Input.GetButton("Fire1"))
-                gun.shoot();
-        }
-    }
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.gameObject.tag == "AmmoBox")
-        {
-            AmmoBoxTemplate scriptableObject = collision.collider.gameObject.GetComponent<AmmoBoxTemplate>();
-            gun.addAmmo(scriptableObject.amoutOfAmmo,scriptableObject.typeOfAmmo);
-            Destroy(collision.collider.gameObject);
-        }
-    }
+            if (Input.GetButton("Fire1") && Time.time - timer > timeforshoot)
+            {
+                timer = Time.time;
+                Debug.Log(Time.time - timer);
 
-    public int amoutOfAmmo() { return gun.ammo(); }
+                GameObject newBullet = Instantiate(bullet, gunbulletspawn.position, gunbulletspawn.rotation);
+       //         playerConnection.spawnBullet(bullet,gunbulletspawn);
+
+            }
+
+        }
+    }
 }

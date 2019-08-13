@@ -22,7 +22,10 @@ public class PlayerConnection : NetworkBehaviour
 
         }
     }
-
+    public void spawnBullet(GameObject bullet, Transform gunbulletspawn)
+    {
+        //CmdSpawnBullets( bullet,  gunbulletspawn);
+    }
     // Update is called once per frame
     void Update()
     {
@@ -33,5 +36,6 @@ public class PlayerConnection : NetworkBehaviour
         GameObject playerRepresentation = Instantiate(playerPrefab, gameObject.transform.position, gameObject.transform.rotation);
         NetworkServer.SpawnWithClientAuthority(playerRepresentation, connectionToClient);
     }
+ 
 
 }

@@ -14,7 +14,6 @@ public class PlayerRotation : NetworkBehaviour
         if (this.hasAuthority)
         {
             playerTransform = gameObject.transform;
-            Debug.Log("elo");
             gunTransform = gameObject.transform.Find("Gun").gameObject.transform;
         }
     }
@@ -25,7 +24,6 @@ public class PlayerRotation : NetworkBehaviour
 
         if (this.hasAuthority && playerTransform !=null)
         {
-            Debug.Log("chuj");
             float xRotation = Input.GetAxis("Mouse X");
             float yRotation = Input.GetAxis("Mouse Y");
 

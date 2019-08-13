@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 817787128052804132}
   - component: {fileID: 1686874703972773542}
   - component: {fileID: 1355760164726402345}
+  - component: {fileID: 250280107545136800}
   m_Layer: 9
   m_Name: PlayerOne 1
   m_TagString: Player
@@ -278,6 +279,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa04fd5b423a4147ae6d2c92fbde0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &250280107545136800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 817787128052804109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b0d834c1add24e8d9785221d0b9672c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gun: {fileID: 0}
+  bullet: {fileID: 8104642659348457801, guid: da8e00bebf3cd42fd8aee0c4c6d232a1, type: 3}
+  gunbulletspawn: {fileID: 0}
+  timeforshoot: 0.2
+  timer: 0
 --- !u!1 &817787128052804110
 GameObject:
   m_ObjectHideFlags: 0

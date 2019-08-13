@@ -506,8 +506,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baa04fd5b423a4147ae6d2c92fbde0c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
-  playerGun: {fileID: 0}
 --- !u!114 &3106943762153082049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -532,6 +530,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b0d834c1add24e8d9785221d0b9672c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet: {fileID: 0}
+  gunbulletspawn: {fileID: 0}
+  timeforshoot: 0.2
+  timer: 0
 --- !u!114 &8437878666413798390
 MonoBehaviour:
   m_ObjectHideFlags: 0

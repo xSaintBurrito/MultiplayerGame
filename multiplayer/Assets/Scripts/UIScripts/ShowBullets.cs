@@ -17,7 +17,7 @@ public class ShowBullets : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.isLocalPlayer)
-            gameObject.GetComponent<Text>().text = currentGun.amoutOfAmmo() + "";
+//        if(this.isLocalPlayer)
+//            gameObject.GetComponent<Text>().text = currentGun.amoutOfAmmo() + "";
     }
 }
